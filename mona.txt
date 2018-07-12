@@ -1,0 +1,132 @@
+use sakila
+#display all customer details
+select * from customer
+#display email of customer
+select email from customer
+#display only first and last name of customer
+select first_name,last_name from customer
+#display customer list whose address_id>10 and <15
+select * from customer where address_id>10 and address_id<15
+#display all customers whose store_id is 2
+select * from customer where store_id=2
+#display customer whose store_is 1 and active_id is 0
+select first_name from customer where store_id=1 and active=0
+#display all details of film
+select * from payment
+#display amount between 2 and 6
+select * from payment where amount between 2 and 6
+#count from payment whose staff_id is 1
+select count(staff_id) from payment where staff_id between 1 and 5
+
+
+create database student
+use student
+create table person(s_id int primary key, s_name varchar(20), s_add varchar(20), s_phone int);
+insert into person values(1, 'mona', 'bihar', 987654);
+insert into person values(2, 'akshata', 'pune', 974874);
+insert into person values(3, 'preeti', 'delhi', 478343);
+insert into person values(4, 'poonam', 'mumbai', 7866556);
+insert into person values(5, 'sanghamitra', 'dadar', 5374645);
+select * from person;
+
+create table teacher(t_id varchar(10) primary key, t_name varchar(20), t_numb int, s_id int references student(s_id));
+insert into teacher values('t1', 'abc', 473576, 1);
+insert into teacher values('t2', 'def',765675, 2);
+insert into teacher values('t3','ghi',456764, 1);
+insert into teacher values('t4', 'mno',15862, 4);
+insert into teacher values('t5','xyz', 654556, 5);
+select * from teacher;
+insert into teacher values('t6','ftj',565546,6);
+select * from teacher
+
+
+
+#assignment 11/7/2018
+
+create table party(party_code varchar(10) primary key, party_name varchar(20)); 
+insert into party values('P001', 'BJP');
+insert into party values('P002', 'CONGRESS');
+insert into party values('P003', 'SWRAJ');
+select * from PARTY;
+
+create table politician(p_no varchar(10) primary key, p_name varchar(10), p_desc varchar(10), constituency int, party_code varchar(10) references party(party_code));
+insert into politician values('PP001', 'MAMTA','BCOM',550, 'P001');
+insert into politician values('PP002', 'SUDHIR', 'MSC', 657, 'P001');
+insert into politician values('PP003', 'ANKIT', 'MTECH', 564, 'P002');
+insert into politician values('PP004', 'SHWETA', 'BCOM', 765, 'P003');
+select * from politician;
+
+
+create table book(bookname varchar(20) primary key, publisher varchar(20), price int);
+insert into book values('C PROGRAMMING', 'REEMA THEREJA', 500);
+insert into book values('JAVA', 'T MCA H', 433);
+insert into book values('DBMS', 'SILBERSCHATZ HENRY', 754);
+insert into book values('COMPUTER NETWORK', 'DAVID AARON', 547);
+select * from BOOK;
+
+
+CREATE TABLE member(m_numb varchar(10) primary key, m_name varchar(20), address varchar(20), city varchar(10), category varchar(20));
+drop table member
+insert into member values('m001', 'mona', 'malsalami', 'patna', 'abc');
+insert into member values('m002', 'akashata', 'akuri', 'pune','xyz');
+insert into member values('m003', 'preeti', 'sector 3', 'delhi','mno');
+select * from member;
+
+
+
+create table book_member(b_name varchar(20),
+m_no varchar(10),foreign key(b_name) references book(bookname),
+foreign key (m_no) references member(m_numb),
+doi varchar(20),dor varchar(20),);
+
+
+
+
+create table player(p_no varchar(20) primary key, p_name varchar(20), club_name varchar(20));
+insert into player values('pl01', 'dhoni','abc');
+insert into player values('pl02', 'sachin','mno');
+insert into player values('pl03', 'Cristiano Ronaldo', 'xyz');
+
+
+create table games(g_no varchar(20) primary key, g_name varchar(20), no_of_player int, no_of_coach int, captain_no int);
+insert into games values('ga01','Cricket', 12, 8,3);
+insert into games values('ga02', 'football', 9, 6,8);
+insert into games values('ga03', 'jockey', 6,12,22);
+
+
+
+
+create table player_game(p_no varchar(20), g_no varchar(20), foreign key(p_no) references player(p_no), foreign key (g_no) references games(g_no));
+insert into player_game values('pl01', 'ga01');
+insert into player_game values('pl02', 'ga03');
+insert into player_game values('pl01', 'ga02');
+
+
+create table dept(deptno varchar(20) primary key, dname varchar(20), location varchar(20));
+insert into dept values('d01', 'technology', 'pune');
+insert into dept values('d02', 'customer service', 'mumbai');
+insert into dept values('d03', 'consumer', 'karnataka');
+
+
+create table salgrade(grade varchar(20) primary key, minsal int, maxsal int);
+insert into salgrade values('A', 20000, 50000);
+insert into salgrade values('B', 69999, 89999);
+insert into salgrade values('C', 50000, 80000);
+
+
+create table emp(empno varchar(20) primary key, ename varchar(20), address varchar(20), city varchar(20), email varchar(20), hiredate int, sal int, job varchar(20), mgr varchar(20), dept_no varchar(20), foreign key(mgr) references salgrade(grade), foreign key(dept_no) references dept(deptno));
+
+
+create table dependent(d_name varchar(20), d_relationship varchar(20), empno varchar(20)
+
+
+
+
+
+
+
+
+
+
+
+
